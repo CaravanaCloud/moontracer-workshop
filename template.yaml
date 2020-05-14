@@ -1,0 +1,51 @@
+#$ AWS_PROFILE=faermanj aws s3 cp template.yml s3://ehw-artifacts --acl public-read
+Description: "E-Health Workshop Instance"
+
+Resources: 
+  BasicNotebookInstanceLifecycleConfig: 
+    Type: "AWS::SageMaker::NotebookInstanceLifecycleConfig"
+    Properties: 
+      OnStart: 
+        - Content:
+            Fn::Base64: !Sub |
+              pip install AWSIoTPythonSDK
+    
+  WorkshopRole:
+    Type: "AWS::IAM::Role" 
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Statement: 
+          - 
+            Action: 
+              - "sts:AssumeRole"
+            Effect: Allow
+            Principal: 
+              Service: 
+                - sagemaker.amazonaws.com
+        Version: "2012-10-17"
+      Path: /
+      Policies: 
+        - 
+          PolicyDocument: 
+            Statement: 
+              - 
+                Action: "*"
+                Effect: Allow
+                Resource: "*"
+            Version: "2012-10-17"
+          PolicyName: root
+
+  WorkshopNotebookInstance: 
+    Type: "AWS::SageMaker::NotebookInstance"
+    Properties: 
+      InstanceType: ml.t3.large
+      LifecycleConfigName: !GetAtt BasicNotebookInstanceLifecycleConfig.NotebookInstanceLifecycleConfigName
+      RoleArn: !GetAtt WorkshopRole.Arn
+      AdditionalCodeRepositories:
+          - https://github.com/CaravanaCloud/moontracer-workshop.git
+
+Outputs: 
+  OpenInstanceLink:
+    Value: !Sub
+      - https://${NotebookInstanceName}.notebook.${AWS::Region}.sagemaker.aws/notebooks/ehealth-workshop/index.ipynb#
+      - { NotebookInstanceName: !GetAtt WorkshopNotebookInstance.NotebookInstanceName }      
