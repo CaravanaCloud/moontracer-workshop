@@ -1,4 +1,3 @@
-#$ AWS_PROFILE=faermanj aws s3 cp template.yml s3://ehw-artifacts --acl public-read
 Description: "E-Health Workshop Instance"
 
 Resources: 
