@@ -1,6 +1,6 @@
 # Welcome to Moontracer
 
-We are very excited for your day one in lunar energy technology. With our innovations, the moon can be tracked with more accuracy and precision than ever, making energy collection more efficient and reliable. However, harvesting moon energy is not an easy task. Battery outages, motor anomalies and other failures can be caused by weather conditions, lack of moon visibility and other circumstances. This notebook contains data collected directly from hundreds of our devices, along with the basics of our technology. Your goal is prevent issues and ensure timely maintenance of our whole fleet. Ready?
+We are very excited for your first day working in lunar energy technology. In this workshop, you will learn more about your role in helping the whole planet be more efficient. With our innovations, the moon can be tracked with more accuracy and precision than ever, making energy collection more reliable than ever. However, harvesting moon energy is not an easy task. Battery outages, motor anomalies and other failures can be caused by weather conditions, lack of moon visibility and other circumstances. This notebook contains data collected directly from thousands of our devices, along with the basics of our technology. Your goal is prevent issues and ensure timely maintenance of our whole fleet. Ready?
 
 # Disclaimers
 
