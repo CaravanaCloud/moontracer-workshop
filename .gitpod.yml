@@ -2,8 +2,10 @@
 #  file: .gitpod.Dockerfile
 
 tasks:
-  - init: echo "Preparing your Jupyter environment..."
-  - command: >
+  - init: |
+      pip install --upgrade pip
+      pip install --upgrade pandas numpy matplotlib boto3 awscli sagemaker pickleshare
+  - command: |
       gp open index.ipynb
 
 ports:
