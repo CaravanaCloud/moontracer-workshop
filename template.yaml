@@ -1,3 +1,8 @@
+# deploy this template using the aws cli
+# aws cloudformation create-stack --stack-name moontracer-$RANDOM --template-body file://template.yaml --capabilities CAPABILITY_NAMED_IAM
+# list and delete all stacks whose name starts with "moontracer"
+# aws cloudformation list-stacks --query "StackSummaries[?starts_with(StackName, 'moontracer')].StackName" --output text | xargs -I {} aws cloudformation delete-stack --stack-name {}
+
 Description: "Moontracer Workshop Instance"
 
 Parameters: 
@@ -11,7 +16,7 @@ Parameters:
       - ml.t3.large
       - ml.m5.large
       - ml.m5.large
-    Description: Notebook instance size
+    Description: Notebook instance size. AWS Free Tier includes 250 hours of ml.t3.medium instance on Studio notebooks OR 250 hours of ml.t2 medium instance or ml.t3.medium instance on notebook instances. Learn more at https://aws.amazon.com/free
     
 Resources: 
   BasicNotebookInstanceLifecycleConfig: 
