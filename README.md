@@ -12,7 +12,7 @@ This project is not sponsored or supported by Amazon or its affiliates. The text
 
 The notebook instance used for this workshop and its respective configuration can be setup by creating an AWS CloudFormation stack:
 
-<a href="https://console.aws.amazon.com/cloudformation/home?#/stacks/create/review?filter=active&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fs3.strigus.cloud%2Ftemplate.yaml&stackName=moontracer-workshop"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" target="_blank"/></a>
+<a href="https://console.aws.amazon.com/cloudformation/home?#/stacks/create/review?filter=active&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fs3.strigus.cloud%2Ftemplate.yaml&stackName=moontracer-workshop"><img src="https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg" target="_blank"/></a>
 
 Enjoy!
  
