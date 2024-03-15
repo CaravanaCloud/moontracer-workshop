@@ -7,7 +7,7 @@ tasks:
       pip install --upgrade pandas numpy matplotlib boto3 awscli sagemaker pickleshare jupyter
   - command: jupyter notebook
 ports:
-  - port: 8080
+  - port: 8888
     visibility: public
     onOpen: ignore
 
