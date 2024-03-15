@@ -4,10 +4,8 @@
 tasks:
   - init: |
       pip install --upgrade pip
-      pip install --upgrade pandas numpy matplotlib boto3 awscli sagemaker pickleshare
-  - command: |
-      gp open index.ipynb
-
+      pip install --upgrade pandas numpy matplotlib boto3 awscli sagemaker pickleshare jupyter
+  - command: jupyter notebook
 ports:
   - port: 8080
     visibility: public
