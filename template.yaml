@@ -40,11 +40,11 @@ Resources:
           PolicyDocument: 
             Statement: 
               - 
-                Action: "*"
+                Action: ["s3:*","sagemaker:*"]
                 Effect: Allow
                 Resource: "*"
             Version: "2012-10-17"
-          PolicyName: root
+          PolicyName: workshop-policy
 
   WorkshopNotebookInstance: 
     Type: "AWS::SageMaker::NotebookInstance"
