@@ -9,13 +9,6 @@ Parameters:
   NotebookInstanceType: 
     Type: String
     Default: ml.t3.medium
-    AllowedValues: 
-      - ml.t2.medium
-      - ml.t2.large
-      - ml.t3.medium
-      - ml.t3.large
-      - ml.m5.large
-      - ml.m5.large
     Description: Notebook instance size. AWS Free Tier includes 250 hours of ml.t3.medium instance on Studio notebooks OR 250 hours of ml.t2 medium instance or ml.t3.medium instance on notebook instances. Learn more at https://aws.amazon.com/free
     
 Resources: 
@@ -25,7 +18,8 @@ Resources:
       OnStart: 
         - Content:
             Fn::Base64: !Sub |
-              pip install AWSIoTPythonSDK
+              pip install --upgrade pip &&
+              pip install AWSIoTPythonSDK numexpr pandas numpy matplotlib boto3 awscli sagemaker pickleshare
 
   WorkshopRole:
     Type: "AWS::IAM::Role" 
@@ -64,5 +58,5 @@ Resources:
 Outputs: 
   OpenInstanceLink:
     Value: !Sub
-      - https://${NotebookInstanceName}.notebook.${AWS::Region}.sagemaker.aws/notebooks/moontracer-workshop/index.ipynb#
+      - https://${NotebookInstanceName}.notebook.${AWS::Region}.sagemaker.aws/lab/tree/moontracer-workshop/index.ipynb
       - { NotebookInstanceName: !GetAtt WorkshopNotebookInstance.NotebookInstanceName }      
