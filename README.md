@@ -14,7 +14,7 @@ This workshop can be executed in a Amazon Sagemaker notebook instance, that you 
 
 <a href="https://console.aws.amazon.com/cloudformation/home?#/stacks/create/review?filter=active&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fs3.strigus.cloud%2Ftemplate.yaml&stackName=moontracer-workshop"><img src="https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg" target="_blank"/></a>
 
-You can use the default values for all parameters and wait for the stack to reach the CREATE_COMPLETE state. Once the stack is created you'll find a link to the first notebook in the "Outputs" tab. 
+You can use the default values for all parameters, check the box to acknowledge the creation of the IAM role, and create the stack. It should take about five minutes for the stack to reach the CREATE_COMPLETE state. Once the stack is created you'll find a link to the first notebook in the "Outputs" tab. 
 
 If your notebook instance prompts you to select a kernel, please select the "conda_python3" kernel.
 
