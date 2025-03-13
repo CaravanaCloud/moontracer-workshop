@@ -5,58 +5,62 @@
 
 Description: "Moontracer Workshop Instance"
 
-Parameters: 
-  NotebookInstanceType: 
+Parameters:
+  NotebookInstanceType:
     Type: String
     Default: ml.t3.medium
     Description: Notebook instance size. AWS Free Tier includes 250 hours of ml.t3.medium instance on Studio notebooks OR 250 hours of ml.t2 medium instance or ml.t3.medium instance on notebook instances. Learn more at https://aws.amazon.com/free
-    
-Resources: 
-  BasicNotebookInstanceLifecycleConfig: 
+
+  NotebookPlatformIdentifier:
+    Type: String
+    Default: notebook-al2-v3
+
+Resources:
+  BasicNotebookInstanceLifecycleConfig:
     Type: "AWS::SageMaker::NotebookInstanceLifecycleConfig"
-    Properties: 
-      OnStart: 
+    Properties:
+      OnStart:
         - Content:
             Fn::Base64: !Sub |
               pip install --upgrade pip &&
               pip install AWSIoTPythonSDK numexpr pandas numpy matplotlib boto3 awscli sagemaker pickleshare
 
   WorkshopRole:
-    Type: "AWS::IAM::Role" 
-    Properties: 
-      AssumeRolePolicyDocument: 
-        Statement: 
-          - 
-            Action: 
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
               - "sts:AssumeRole"
             Effect: Allow
-            Principal: 
-              Service: 
+            Principal:
+              Service:
                 - sagemaker.amazonaws.com
         Version: "2012-10-17"
       Path: /
-      Policies: 
-        - 
-          PolicyDocument: 
-            Statement: 
-              - 
-                Action: ["s3:*","sagemaker:*", "logs:*" ,"iam:PassRole"]
+      Policies:
+        - PolicyDocument:
+            Statement:
+              - Action: ["s3:*", "sagemaker:*", "logs:*", "iam:PassRole"]
                 Effect: Allow
                 Resource: "*"
             Version: "2012-10-17"
           PolicyName: workshop-policy
 
-  WorkshopNotebookInstance: 
+  WorkshopNotebookInstance:
     Type: "AWS::SageMaker::NotebookInstance"
-    Properties: 
+    Properties:
       InstanceType: !Ref NotebookInstanceType
+      PlatformIdentifier: !Ref NotebookPlatformIdentifier
       LifecycleConfigName: !GetAtt BasicNotebookInstanceLifecycleConfig.NotebookInstanceLifecycleConfigName
       RoleArn: !GetAtt WorkshopRole.Arn
       AdditionalCodeRepositories:
-          - https://github.com/CaravanaCloud/moontracer-workshop.git
+        - https://github.com/CaravanaCloud/moontracer-workshop.git
 
-Outputs: 
+Outputs:
   OpenInstanceLink:
     Value: !Sub
       - https://${NotebookInstanceName}.notebook.${AWS::Region}.sagemaker.aws/lab/tree/moontracer-workshop/index.ipynb
-      - { NotebookInstanceName: !GetAtt WorkshopNotebookInstance.NotebookInstanceName }      
+      - {
+          NotebookInstanceName: !GetAtt WorkshopNotebookInstance.NotebookInstanceName,
+        }
